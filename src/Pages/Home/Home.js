@@ -7,7 +7,7 @@ function Home() {
  const navigate = useNavigate()
   useEffect(()=>{
     const token = localStorage.getItem('token')
-    axios("https://be-entri.onrender.com/users/getdata",{headers:{'Authorization':'bearer'+" "+token}}).then(result=>{
+    axios("https://be-entri.onrender.com/users/getdata",{headers:{'Authorization':`bearer ${token}`}}).then(result=>{
       console.log(result.data);
       setImages(result.data)
     }).catch(err=>{
@@ -15,7 +15,7 @@ function Home() {
       localStorage.removeItem('token')
       navigate('/login')
     })
-  },[])
+  },[navigate])
   return (
     <div>
       {images.length >0 && 
